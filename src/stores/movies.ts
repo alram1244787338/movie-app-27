@@ -55,6 +55,11 @@ export const useMoviesStore = defineStore("movies", () => {
   const isFirstPage = computed(() => currentPage.value === 1);
   const isLastPage = computed(() => currentPage.value === totalPages.value);
 
+  const FAVORITES_DISPLAY_LIMIT = 4;
+  const displayFavorites = computed(() =>
+    favorites.value.slice(0, FAVORITES_DISPLAY_LIMIT)
+  );
+
   async function fetchData<T>(
     fetchFn: () => Promise<T>,
     errorMessage: string
@@ -203,6 +208,7 @@ export const useMoviesStore = defineStore("movies", () => {
     hasMovies,
     isFirstPage,
     isLastPage,
+    displayFavorites,
 
     // Actions
     search,

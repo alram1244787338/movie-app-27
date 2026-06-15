@@ -9,7 +9,8 @@
       <div
         v-for="category in categories"
         :key="category.id"
-        class="p-4 rounded-lg text-center hover:bg-blue-600 hover:text-white transition duration-300 shadow"
+        @click="$emit('selectGenre', category.id, category.name)"
+        class="p-4 rounded-lg text-center hover:bg-blue-600 hover:text-white transition duration-300 shadow cursor-pointer"
       >
         <span class="font-medium">{{ category.name }}</span>
       </div>
@@ -31,4 +32,6 @@ defineProps({
     default: false,
   },
 });
+
+defineEmits(["selectGenre"]);
 </script>
