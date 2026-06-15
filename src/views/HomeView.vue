@@ -156,7 +156,7 @@ function goToMovie(id: number) {
 function navigateToGenre(id: number, name: string) {
   router.push({
     path: "/movies",
-    query: { genre: id, name: name },
+    query: { category: String(id) },
   });
 }
 

@@ -72,6 +72,7 @@ import { computed, ref, watch } from "vue";
 import type { Category } from "../../types/Category";
 import FilterDropdown from "../common/FilterDropdown.vue";
 import SearchInput from "../common/SearchInput.vue";
+import { DEFAULT_SORT } from "../../constants/filterConstants";
 
 interface FilterOption {
   value: string;
@@ -104,7 +105,6 @@ const DEBOUNCE_DELAY = 500;
 watch(
   () => props.searchQuery,
   (newValue) => {
-    2;
     if (newValue !== localSearchQuery.value) {
       localSearchQuery.value = newValue;
     }
@@ -148,7 +148,7 @@ const hasActiveFilters = computed(() => {
     props.category !== "" ||
     props.year !== "" ||
     props.rating !== "" ||
-    props.sortOption !== "popularity.desc"
+    props.sortOption !== DEFAULT_SORT
   );
 });
 
@@ -157,7 +157,7 @@ const clearAllFilters = () => {
   emit("update:category", "");
   emit("update:year", "");
   emit("update:rating", "");
-  emit("update:sortOption", "popularity.desc");
+  emit("update:sortOption", DEFAULT_SORT);
 };
 
 const categoryOptions = computed<FilterOption[]>(() => {
@@ -185,7 +185,7 @@ const ratingOptions = computed<FilterOption[]>(() => {
 });
 
 const sortOptions: FilterOption[] = [
-  { value: "popularity.desc", label: "Popularne" },
+  { value: DEFAULT_SORT, label: "Popularne" },
   { value: "title.asc", label: "Tytuł (A-Z)" },
   { value: "title.desc", label: "Tytuł (Z-A)" },
   { value: "primary_release_year.desc", label: "Rok (najnowsze)" },
