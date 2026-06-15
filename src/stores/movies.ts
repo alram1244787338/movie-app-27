@@ -100,8 +100,6 @@ export const useMoviesStore = defineStore("movies", () => {
       "Nie udało się pobrać popularnych filmów"
     );
 
-    console.log(result);
-
     if (result) {
       movies.value = result.results;
       totalPages.value = result.totalPages;
